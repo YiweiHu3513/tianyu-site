@@ -8,7 +8,6 @@ const NAV_ITEMS = [
   { label: '天与科玩', to: '/sciplay' },
   { label: '服务', to: '/services' },
   { label: '关于', to: '/about' },
-  { label: '联系', to: '/contact' },
 ]
 
 export default function Navbar() {
@@ -38,6 +37,19 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <span className="w-px h-5 bg-line mx-2" aria-hidden="true" />
+          <Link
+            to="/contact"
+            className="px-4 py-1.5 rounded-lg text-sm font-medium no-underline border border-line text-ink hover:border-teal hover:text-teal transition-colors"
+          >
+            联系合作
+          </Link>
+          <Link
+            to="/sci-vision"
+            className="px-4 py-1.5 rounded-lg text-sm font-medium no-underline bg-teal text-white hover:bg-teal-light transition-colors"
+          >
+            平台试用
+          </Link>
         </div>
 
         {/* Mobile hamburger */}
@@ -67,6 +79,21 @@ export default function Navbar() {
               {label}
             </Link>
           ))}
+          <hr className="border-line my-2" />
+          <Link
+            to="/contact"
+            onClick={() => setOpen(false)}
+            className="px-3 py-2.5 rounded-lg text-sm font-medium no-underline text-ink"
+          >
+            联系合作
+          </Link>
+          <Link
+            to="/sci-vision"
+            onClick={() => setOpen(false)}
+            className="mx-3 mt-1 py-2.5 rounded-lg text-sm font-medium no-underline bg-teal text-white text-center"
+          >
+            平台试用
+          </Link>
         </div>
       )}
     </nav>

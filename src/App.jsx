@@ -7,6 +7,7 @@ import Artech from './pages/Artech'
 import SciVision from './pages/SciVision'
 import SciPlay from './pages/SciPlay'
 import Contact from './pages/Contact'
+import CaseDetail from './pages/CaseDetail'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="about" element={<About />} />
           <Route path="services" element={<Services />} />
           <Route path="artech" element={<Artech />} />
+          <Route path="artech/:slug" element={<CaseDetail />} />
           <Route path="sci-vision" element={<SciVision />} />
           <Route path="sciplay" element={<SciPlay />} />
           <Route path="contact" element={<Contact />} />

@@ -2,19 +2,19 @@ import { Link } from 'react-router'
 
 const SERVICES = [
   {
-    icon: '🔬',
-    title: '科学可视化',
-    desc: '将科研数据与发现转化为直观、精确的视觉呈现，帮助研究成果跨越专业壁垒。',
+    icon: '📄',
+    title: '学术出版的视觉升级',
+    desc: '期刊封面设计、科学插画、学术海报——让你的研究成果在Nature、Science等顶刊中脱颖而出。',
   },
   {
-    icon: '🎨',
-    title: '交互体验设计',
-    desc: '为展览、活动和数字平台打造沉浸式交互内容，让观众深度参与科学叙事。',
+    icon: '🎬',
+    title: '科学故事的动态讲述',
+    desc: '科学动画、学术PPT、科普视频——将复杂的科研成果转化为多媒体叙事作品。',
   },
   {
-    icon: '🌐',
-    title: '平台开发',
-    desc: '从概念到上线，为科研机构与教育组织提供完整的数字平台解决方案。',
+    icon: '🏛️',
+    title: '实体场景的沉浸式体验',
+    desc: '博物馆展陈、科学艺术展、教育空间——打造线下科学传播的沉浸式交互体验。',
   },
 ]
 
@@ -47,10 +47,31 @@ const PARTNERS = [
   '北京大学', '清华大学', '核能源研究院',
 ]
 
+const TESTIMONIALS = [
+  {
+    quote: '天与视界的学术可视化能力让我们的研究成果在Nature发表时获得了编辑的高度评价，封面设计精准还原了实验的核心机制。',
+    author: '合作科研团队',
+    org: '中国科学院',
+    stars: 5,
+  },
+  {
+    quote: '从展览策划到最终呈现，团队展现了极强的跨学科理解力。他们不只是设计师，更是科学传播的思考者。',
+    author: '展览合作方',
+    org: '中央美术学院',
+    stars: 5,
+  },
+  {
+    quote: '科学文创产品的设计超出预期，既保持了科学严谨性，又具有很强的市场吸引力。水敏卡系列深受参观者喜爱。',
+    author: '文创合作伙伴',
+    org: '华熙生物',
+    stars: 5,
+  },
+]
+
 const CASES_PREVIEW = [
-  { img: '/images/cases/case-img-047.png', title: '遥远太阳之歌', cat: 'AGI影像' },
-  { img: '/images/cases/case-img-051.png', title: '生命的记忆', cat: '装置艺术' },
-  { img: '/images/cases/case-img-119.jpeg', title: '能源与文明', cat: '展览策划' },
+  { img: '/images/cases/case-img-047.png', title: '遥远太阳之歌', cat: 'AGI影像', slug: 'song-of-distant-sun' },
+  { img: '/images/cases/case-img-051.png', title: '生命的记忆', cat: '装置艺术', slug: 'biological-memory' },
+  { img: '/images/cases/case-img-119.jpeg', title: '能源与文明', cat: '展览策划', slug: 'energy-civilization' },
 ]
 
 export default function Home() {
@@ -125,7 +146,7 @@ export default function Home() {
             {CASES_PREVIEW.map((c, i) => (
               <Link
                 key={c.title}
-                to="/artech"
+                to={`/artech/${c.slug}`}
                 className="scroll-reveal group rounded-2xl overflow-hidden no-underline card-elevated img-hover-zoom"
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
@@ -180,10 +201,40 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section className="bg-white/50 border-t border-line">
+        <div className="mx-auto max-w-6xl px-6 py-20">
+          <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">Testimonials</p>
+          <h2 className="text-3xl font-medium text-ink mb-12 scroll-reveal">合作伙伴评价</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {TESTIMONIALS.map((t, i) => (
+              <div
+                key={i}
+                className="scroll-reveal p-6 rounded-2xl border border-line bg-card"
+                style={{ transitionDelay: `${i * 100}ms` }}
+              >
+                <div className="flex gap-0.5 mb-4">
+                  {Array.from({ length: t.stars }).map((_, j) => (
+                    <svg key={j} className="w-4 h-4 text-amber" viewBox="0 0 20 20" fill="currentColor">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                  ))}
+                </div>
+                <p className="text-sm text-muted leading-relaxed mb-4 italic">"{t.quote}"</p>
+                <div>
+                  <p className="text-sm font-medium text-ink">{t.author}</p>
+                  <p className="text-xs text-muted">{t.org}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="bg-gradient-to-br from-teal to-teal-light scroll-reveal">
         <div className="mx-auto max-w-6xl px-6 py-20 text-center">
-          <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">有想法？聊聊看</h2>
+          <h2 className="text-3xl md:text-4xl font-medium text-white mb-4">准备好转化科研成果了吗？</h2>
           <p className="text-white/80 max-w-lg mx-auto mb-8 font-sans">
             无论是科学可视化项目、展览合作还是平台开发，我们都期待与你交流。
           </p>
@@ -191,7 +242,7 @@ export default function Home() {
             to="/contact"
             className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white text-teal font-bold text-sm no-underline shadow-lg hover:-translate-y-0.5 transition-transform font-sans"
           >
-            发起对话
+            获取专属解决方案
           </Link>
         </div>
       </section>
