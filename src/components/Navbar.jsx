@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router'
 
 const NAV_ITEMS = [
   { label: '首页', to: '/' },
-  { label: '平台', to: '/sci-vision' },
   { label: '天与科艺', to: '/artech' },
   { label: '天与科玩', to: '/sciplay' },
   { label: '服务', to: '/services' },
@@ -46,9 +45,9 @@ export default function Navbar() {
           </Link>
           <Link
             to="/sci-vision"
-            className="px-4 py-1.5 rounded-lg text-sm font-medium no-underline bg-teal text-white hover:bg-teal-light transition-colors"
+            className="px-4 py-1.5 rounded-lg text-sm font-medium no-underline bg-ink text-white hover:bg-ink/80 transition-colors tracking-wide"
           >
-            平台试用
+            SCI-VISION
           </Link>
         </div>
 
@@ -90,9 +89,9 @@ export default function Navbar() {
           <Link
             to="/sci-vision"
             onClick={() => setOpen(false)}
-            className="mx-3 mt-1 py-2.5 rounded-lg text-sm font-medium no-underline bg-teal text-white text-center"
+            className="mx-3 mt-1 py-2.5 rounded-lg text-sm font-medium no-underline bg-ink text-white text-center tracking-wide"
           >
-            平台试用
+            SCI-VISION
           </Link>
         </div>
       )}
