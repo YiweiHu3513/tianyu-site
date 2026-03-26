@@ -1,36 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+@import "tailwindcss";
 
-:root {
-  --ink: #0f1c2d;
-  --muted: #4f5d70;
-  --muted-soft: #69778c;
-  --line: #d7e1ee;
-  --line-strong: #b8c8dc;
-  --teal-deep: #0b7380;
+@theme {
+  --color-ink: #0f1c2d;
+  --color-muted: #4f5d70;
+  --color-teal: #0b7380;
+  --color-teal-light: #0ea5a3;
+  --color-amber: #ffb347;
+  --color-surface: #f8fbff;
+  --color-card: rgba(255, 255, 255, 0.82);
+  --color-line: #d7e1ee;
+  --font-sans: 'Outfit', 'Noto Sans SC', system-ui, sans-serif;
+  --font-display: 'Outfit', 'Noto Sans SC', system-ui, sans-serif;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  color: var(--ink);
-  font-family: 'Noto Sans SC', 'Outfit', sans-serif;
-  line-height: 1.55;
-  background:
-    radial-gradient(circle at 12% 12%, rgba(50, 200, 191, 0.18), transparent 48%),
-    radial-gradient(circle at 85% 84%, rgba(255, 179, 71, 0.18), transparent 42%),
-    linear-gradient(180deg, #f8fbff 0%, #eef3f9 100%);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
-}
-
-h1,
-h2 {
-  margin: 0;
-  line-height: 1.15;
-  color: var(--ink);
-  font-family: 'Outfit', 'Noto Sans SC', sans-serif;
+@layer base {
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink);
+    background: linear-gradient(180deg, var(--color-surface) 0%, #eef3f9 100%);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
 }
