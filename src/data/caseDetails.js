@@ -14,7 +14,7 @@ const CASE_DETAILS = {
     intro:
       '《遥远太阳之歌》是一部完全由人工智能生成的四章节影像作品。关于太阳文化符号的历史记录，与可控核聚变"人造太阳"的技术愿景。作品通过AI技术重新诠释人类对太阳的崇拜与追求，探讨从钻木取火到核聚变的能源演变。',
     links: [
-      { label: '作品链接 Artwork link', url: 'https://www.bilibili.com/video/BV1c8ie21Ee5/' },
+      { label: 'Bilibili 完整版', url: 'https://www.bilibili.com/video/BV1cBxez1Es5/' },
       { label: 'YouTube', url: 'https://www.youtube.com/watch?v=sBQ71MQJ4uc' },
     ],
     chapters: [
@@ -43,7 +43,7 @@ const CASE_DETAILS = {
         img: '/images/cases/case-img-119.jpeg',
       },
     ],
-    videoEmbed: 'https://player.bilibili.com/player.html?bvid=BV1c8ie21Ee5',
+    videoEmbed: 'https://player.bilibili.com/player.html?bvid=BV1cBxez1Es5',
   },
   'human-morphology': {
     title: '人的形态研究',
@@ -55,7 +55,9 @@ const CASE_DETAILS = {
     tags: ['人体', 'AI生成', '哲学'],
     intro:
       '围绕"身体"展开的实验影像，分为五个章节：神圣、理性、技术、次元、智能。探讨"人是什么"与"人该长什么样"的认知，通过AI生成影像重新审视人类形态的演变与未来。',
-    links: [],
+    links: [
+      { label: 'Bilibili 完整版', url: 'https://www.bilibili.com/video/BV1GhMYzSEus/' },
+    ],
     chapters: [
       {
         num: 'I',
@@ -88,7 +90,7 @@ const CASE_DETAILS = {
         img: '/images/cases/case-img-025.png',
       },
     ],
-    videoEmbed: null,
+    videoEmbed: 'https://player.bilibili.com/player.html?bvid=BV1GhMYzSEus',
   },
   'biological-memory': {
     title: '生命的记忆',
