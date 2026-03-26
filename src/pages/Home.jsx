@@ -83,7 +83,7 @@ export default function Home() {
         <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-amber/20 rounded-full blur-3xl" aria-hidden="true" />
 
         <div className="relative mx-auto max-w-6xl px-6 pt-24 pb-20 md:pt-36 md:pb-28">
-          <p className="text-teal/80 text-sm font-bold tracking-widest uppercase mb-4 scroll-reveal">
+          <p className="text-teal text-sm font-bold tracking-widest uppercase mb-4 scroll-reveal">
             Tianyu Vision Studio
           </p>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.05] text-ink max-w-4xl scroll-reveal">
@@ -95,7 +95,7 @@ export default function Home() {
           <div className="mt-8 flex flex-wrap gap-3 scroll-reveal">
             <Link
               to="/contact"
-              className="inline-flex items-center px-6 py-3 rounded-xl bg-ink text-white font-semibold text-sm no-underline shadow-lg shadow-ink/15 hover:-translate-y-0.5 transition-transform"
+              className="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-teal to-teal-light text-white font-semibold text-sm no-underline shadow-lg shadow-teal/25 hover:-translate-y-0.5 transition-transform"
             >
               联系我们
             </Link>
@@ -112,7 +112,7 @@ export default function Home() {
       {/* Services */}
       <section className="bg-white/50 border-t border-b border-line">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-teal/80 text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">What We Do</p>
+          <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">What We Do</p>
           <h2 className="text-3xl md:text-4xl font-medium text-ink mb-12 scroll-reveal">核心能力</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {SERVICES.map((s, i) => (
@@ -135,10 +135,10 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-6 py-20">
           <div className="flex items-end justify-between mb-12">
             <div className="scroll-reveal">
-              <p className="text-teal/80 text-xs font-bold tracking-widest uppercase mb-2 font-sans">Featured Work</p>
+              <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2 font-sans">Featured Work</p>
               <h2 className="text-3xl md:text-4xl font-medium text-ink">代表案例</h2>
             </div>
-            <Link to="/artech" className="text-sm font-semibold text-teal/80 no-underline hover:underline font-sans scroll-reveal">
+            <Link to="/artech" className="text-sm font-semibold text-teal no-underline hover:underline font-sans scroll-reveal">
               查看全部 →
             </Link>
           </div>
@@ -154,7 +154,7 @@ export default function Home() {
                   <img src={c.img} alt={c.title} className="w-full aspect-video object-cover" />
                 </div>
                 <div className="p-4">
-                  <span className="text-xs font-semibold text-teal/80 font-sans">{c.cat}</span>
+                  <span className="text-xs font-semibold text-teal font-sans">{c.cat}</span>
                   <h3 className="text-base font-medium text-ink mt-1">{c.title}</h3>
                 </div>
               </Link>
@@ -166,7 +166,7 @@ export default function Home() {
       {/* Products */}
       <section className="bg-white/50 border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-teal/80 text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">Ecosystem</p>
+          <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">Ecosystem</p>
           <h2 className="text-3xl md:text-4xl font-medium text-ink mb-12 scroll-reveal">产品与厂牌</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {PRODUCTS.map((p, i) => (
@@ -176,10 +176,10 @@ export default function Home() {
                 className={`scroll-reveal block p-8 rounded-2xl border border-line bg-gradient-to-br ${p.accent} no-underline card-elevated`}
                 style={{ transitionDelay: `${i * 100}ms` }}
               >
-                <span className="text-xs font-bold tracking-widest uppercase text-teal/80 font-sans">{p.tag}</span>
+                <span className="text-xs font-bold tracking-widest uppercase text-teal font-sans">{p.tag}</span>
                 <h3 className="text-xl font-medium text-ink mt-2 mb-3">{p.title}</h3>
                 <p className="text-sm text-muted leading-relaxed font-sans">{p.desc}</p>
-                <span className="inline-flex items-center mt-4 text-sm font-semibold text-teal/80 font-sans">了解更多 →</span>
+                <span className="inline-flex items-center mt-4 text-sm font-semibold text-teal font-sans">了解更多 →</span>
               </Link>
             ))}
           </div>
@@ -189,7 +189,7 @@ export default function Home() {
       {/* Partners */}
       <section>
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-teal/80 text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">Partners</p>
+          <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">Partners</p>
           <h2 className="text-3xl font-medium text-ink mb-10 scroll-reveal">合作伙伴</h2>
           <div className="flex flex-wrap gap-4 scroll-reveal">
             {PARTNERS.map((name) => (
@@ -204,7 +204,7 @@ export default function Home() {
       {/* Testimonials */}
       <section className="bg-white/50 border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <p className="text-teal/80 text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">Testimonials</p>
+          <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2 font-sans scroll-reveal">Testimonials</p>
           <h2 className="text-3xl font-medium text-ink mb-12 scroll-reveal">合作伙伴评价</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {TESTIMONIALS.map((t, i) => (
@@ -240,7 +240,7 @@ export default function Home() {
           </p>
           <Link
             to="/contact"
-            className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white text-teal/80 font-bold text-sm no-underline shadow-lg hover:-translate-y-0.5 transition-transform font-sans"
+            className="inline-flex items-center px-8 py-3.5 rounded-xl bg-white text-teal font-bold text-sm no-underline shadow-lg hover:-translate-y-0.5 transition-transform font-sans"
           >
             获取专属解决方案
           </Link>
