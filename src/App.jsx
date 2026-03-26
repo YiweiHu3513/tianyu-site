@@ -1,120 +1,68 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
+const MILESTONES = [
+  {
+    phase: 'Phase 01',
+    title: '信息架构重排',
+    detail: '重建导航和内容层级，让访客在 20 秒内理解我们在做什么。',
+  },
+  {
+    phase: 'Phase 02',
+    title: '案例与服务重构',
+    detail: '整理真实项目成果，补齐服务流程、交付方式与合作入口。',
+  },
+  {
+    phase: 'Phase 03',
+    title: '正式版上线',
+    detail: '完成视觉统一与交互打磨后，切回主域名并发布完整官网。',
+  },
+]
+
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="shell">
+      <div className="orb orb-a" aria-hidden="true" />
+      <div className="orb orb-b" aria-hidden="true" />
+
+      <header className="topbar">
+        <p className="brand">天与视界 · Tianyu Studio</p>
+        <span className="badge">Temporary Site</span>
+      </header>
+
+      <main className="hero">
+        <p className="kicker">Website Rebuild In Progress</p>
+        <h1>新官网正在重构</h1>
+        <p className="lead">
+          当前页面用于保持线上可访问。我们正在重构网站叙事、案例结构和服务流程，
+          正式版将以全新信息架构上线。
+        </p>
+        <div className="actions">
+          <a className="button button-primary" href="mailto:yiweihu3513@gmail.com">
+            联系工作室
+          </a>
+          <a
+            className="button button-secondary"
+            href="https://github.com/YiweiHu3513/tianyu-site"
+            target="_blank"
+            rel="noreferrer"
+          >
+            查看建设进度
+          </a>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+      </main>
+
+      <section className="milestones">
+        {MILESTONES.map((item) => (
+          <article key={item.phase} className="card">
+            <p className="phase">{item.phase}</p>
+            <h2>{item.title}</h2>
+            <p>{item.detail}</p>
+          </article>
+        ))}
       </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <footer className="footnote">Last updated: 2026-03-25</footer>
+    </div>
   )
 }
 
