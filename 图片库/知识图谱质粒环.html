@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>DNA 质粒环智能知识门户</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #000; overflow: hidden; }
+        canvas { display: block; }
+        #status-hint {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.2); font-family: sans-serif; font-size: 10px;
+            letter-spacing: 4px; text-transform: uppercase; pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="status-hint">Hover segments to explore knowledge nodes</div>
+    <canvas id="canvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+        const particleCount = 2800; 
+        const segmentCount = 12;
+        
+        const STATE = { IDLE: 0, GATHERING: 1, FORMED: 2, DISPERSING: 3 };
+        let currentState = STATE.IDLE;
+
+        let mouse = { x: -1000, y: -1000 };
+        let hoverTimer;
+        let ringRotation = 0;
+        let activeSegment = -1;
+        
+        // 用于管理12个段落图片的透明度
+        let segmentOpacities = new Array(segmentCount).fill(0);
+        const fadeSpeed = 1 / (1 * 60); // 1秒渐变
+
+        const DNA_CONFIG = {
+            helixAmplitude: 20,
+            turns: 10,
+            ringRadius: 0,
+            gapWidth: 0.075,
+            portalRadius: 86 // 图片缩小到原来的2/3
+        };
+
+        class Particle {
+            constructor(id) {
+                this.id = id;
+                this.segmentId = Math.floor((id / particleCount) * segmentCount);
+                this.init();
+            }
+
+            init() {
+                this.x = Math.random() * window.innerWidth;
+                this.y = Math.random() * window.innerHeight;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.baseSize = Math.random() * 1.2 + 0.6;
+                this.size = this.baseSize;
+                
+                const segmentAngle = (Math.PI * 2) / segmentCount;
+                this.angle = this.segmentId * segmentAngle + (Math.random() * (segmentAngle - DNA_CONFIG.gapWidth));
+                this.basePairPos = Math.random();
+                this.role = this.id % 3;
+            }
+
+            update() {
+                if (currentState === STATE.GATHERING || currentState === STATE.FORMED) {
+                    const r = DNA_CONFIG.ringRadius;
+                    const helixAngle = this.angle * DNA_CONFIG.turns + ringRotation * 4;
+                    let tx, ty;
+                    const rot = ringRotation;
+
+                    if (this.role === 0) {
+                        const off = Math.sin(helixAngle) * DNA_CONFIG.helixAmplitude;
+                        tx = width/2 + Math.cos(this.angle + rot) * (r + off);
+                        ty = height/2 + Math.sin(this.angle + rot) * (r + off);
+                    } else if (this.role === 1) {
+                        const off = Math.sin(helixAngle + Math.PI) * DNA_CONFIG.helixAmplitude;
+                        tx = width/2 + Math.cos(this.angle + rot) * (r + off);
+                        ty = height/2 + Math.sin(this.angle + rot) * (r + off);
+                    } else {
+                        const offA = Math.sin(helixAngle) * DNA_CONFIG.helixAmplitude;
+                        const offB = Math.sin(helixAngle + Math.PI) * DNA_CONFIG.helixAmplitude;
+                        const off = offA + (offB - offA) * this.basePairPos;
+                        tx = width/2 + Math.cos(this.angle + rot) * (r + off);
+                        ty = height/2 + Math.sin(this.angle + rot) * (r + off);
+                    }
+
+                    // 避让逻辑
+                    if (activeSegment !== -1) {
+                        const dx = tx - mouse.x;
+                        const dy = ty - mouse.y;
+                        const dist = Math.sqrt(dx*dx + dy*dy);
+                        const avoidRange = DNA_CONFIG.portalRadius + 20;
+
+                        if (dist < avoidRange) {
+                            const force = (avoidRange - dist) / avoidRange;
+                            const angle = Math.atan2(dy, dx);
+                            tx += Math.cos(angle) * force * 50;
+                            ty += Math.sin(angle) * force * 50;
+                        }
+                    }
+
+                    const ease = currentState === STATE.GATHERING ? 0.015 : 0.08;
+                    this.x += (tx - this.x) * ease;
+                    this.y += (ty - this.y) * ease;
+
+                } else if (currentState === STATE.DISPERSING) {
+                    this.x += this.vx * 1.5;
+                    this.y += this.vy * 1.5;
+                } else {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    if (this.x < 0 || this.x > width) this.vx *= -1;
+                    if (this.y < 0 || this.y > height) this.vy *= -1;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function updateActiveSegment() {
+            if (currentState !== STATE.FORMED) {
+                activeSegment = -1;
+                return;
+            }
+            let dx = mouse.x - width/2;
+            let dy = mouse.y - height/2;
+            let dist = Math.sqrt(dx*dx + dy*dy);
+            
+            if (Math.abs(dist - DNA_CONFIG.ringRadius) < 80) {
+                let angle = Math.atan2(dy, dx) - ringRotation;
+                while (angle < 0) angle += Math.PI * 2;
+                while (angle > Math.PI * 2) angle -= Math.PI * 2;
+                activeSegment = Math.floor(angle / (Math.PI * 2 / segmentCount));
+            } else {
+                activeSegment = -1;
+            }
+
+            for (let i = 0; i < segmentCount; i++) {
+                if (i === activeSegment) {
+                    segmentOpacities[i] = Math.min(1, segmentOpacities[i] + fadeSpeed);
+                } else {
+                    segmentOpacities[i] = Math.max(0, segmentOpacities[i] - fadeSpeed);
+                }
+            }
+        }
+
+        function animate() {
+            ctx.fillStyle = "black";
+            ctx.fillRect(0, 0, width, height);
+
+            updateActiveSegment();
+
+            if (activeSegment === -1 && (currentState === STATE.FORMED || currentState === STATE.GATHERING)) {
+                ringRotation += 0.0015;
+            }
+
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            if (currentState === STATE.FORMED) {
+                segmentOpacities.forEach((opacity, index) => {
+                    if (opacity > 0) {
+                        if (index === activeSegment) {
+                            ctx.save();
+                            ctx.globalAlpha = opacity;
+                            
+                            // 绘制缩小后的容器
+                            ctx.beginPath();
+                            ctx.arc(mouse.x, mouse.y, DNA_CONFIG.portalRadius, 0, Math.PI * 2);
+                            ctx.fillStyle = "rgba(0, 0, 0, 0.9)";
+                            ctx.fill();
+                            ctx.strokeStyle = "rgba(255, 255, 255, 0.6)";
+                            ctx.lineWidth = 2;
+                            ctx.stroke();
+
+                            // --- 动态方向文字逻辑 ---
+                            ctx.fillStyle = "white";
+                            ctx.font = "bold 14px Arial";
+                            ctx.textBaseline = "middle";
+                            
+                            const text = "NODE 0" + (index + 1);
+                            const textPadding = 15;
+                            
+                            // 根据中轴线判断左右
+                            if (mouse.x < width / 2) {
+                                // 左侧：文字向左
+                                ctx.textAlign = "right";
+                                ctx.fillText(text, mouse.x - DNA_CONFIG.portalRadius - textPadding, mouse.y);
+                                
+                                // 连接线
+                                ctx.beginPath();
+                                ctx.moveTo(mouse.x - DNA_CONFIG.portalRadius, mouse.y);
+                                ctx.lineTo(mouse.x - DNA_CONFIG.portalRadius - textPadding + 5, mouse.y);
+                                ctx.strokeStyle = "rgba(255,255,255,0.4)";
+                                ctx.stroke();
+                            } else {
+                                // 右侧：文字向右
+                                ctx.textAlign = "left";
+                                ctx.fillText(text, mouse.x + DNA_CONFIG.portalRadius + textPadding, mouse.y);
+                                
+                                // 连接线
+                                ctx.beginPath();
+                                ctx.moveTo(mouse.x + DNA_CONFIG.portalRadius, mouse.y);
+                                ctx.lineTo(mouse.x + DNA_CONFIG.portalRadius + textPadding - 5, mouse.y);
+                                ctx.strokeStyle = "rgba(255,255,255,0.4)";
+                                ctx.stroke();
+                            }
+                            // -----------------------
+
+                            ctx.restore();
+                        }
+                    }
+                });
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            DNA_CONFIG.ringRadius = Math.min(width, height) * 0.35;
+        }
+
+        window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+        canvas.addEventListener('mouseenter', () => {
+            hoverTimer = setTimeout(() => {
+                currentState = STATE.GATHERING;
+                setTimeout(() => { if (currentState === STATE.GATHERING) currentState = STATE.FORMED; }, 8000);
+            }, 500);
+        });
+        canvas.addEventListener('mouseleave', () => {
+            clearTimeout(hoverTimer);
+            currentState = STATE.DISPERSING;
+            activeSegment = -1;
+            setTimeout(() => { if (currentState === STATE.DISPERSING) currentState = STATE.IDLE; }, 8000);
+        });
+
+        window.addEventListener('resize', resize);
+        resize();
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle(i));
+        animate();
+    </script>
+</body>
+</html>

@@ -10,7 +10,7 @@
   --color-card: rgba(255, 255, 255, 0.82);
   --color-line: #d7e1ee;
   --font-sans: 'Outfit', 'Noto Sans SC', system-ui, sans-serif;
-  --font-display: 'Outfit', 'Noto Sans SC', system-ui, sans-serif;
+  --font-display: 'Noto Serif SC', 'Playfair Display', serif;
 }
 
 @layer base {
@@ -20,5 +20,42 @@
     background: linear-gradient(180deg, var(--color-surface) 0%, #eef3f9 100%);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Scroll-reveal animation (ported from old site) */
+@layer utilities {
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Image hover zoom (ported from old site) */
+  .img-hover-zoom img {
+    transition: transform 0.6s ease, filter 0.6s ease;
+  }
+  .img-hover-zoom:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Refined card shadow (ported from old site) */
+  .card-elevated {
+    box-shadow: 0 4px 24px -4px rgba(0,0,0,0.06), 0 1px 2px 0 rgba(0,0,0,0.04);
+    border: 1px solid rgba(215,225,238,0.5);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card-elevated:hover {
+    box-shadow: 0 12px 40px -8px rgba(0,0,0,0.1), 0 2px 6px 0 rgba(0,0,0,0.06);
+    transform: translateY(-2px);
   }
 }

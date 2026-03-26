@@ -19,6 +19,12 @@ const PROJECTS = [
   { img: '/images/sciplay/project-14.png', tag: '装饰版画', title: '《遥远太阳之歌》装饰版画', desc: '《遥远太阳之歌》系列延伸产品，装饰数字微喷版画，限量100版。', partner: '核能源研究院' },
   { img: '/images/sciplay/project-16.png', tag: '装置艺术', title: '《生命的记忆》装置艺术', desc: '华熙生物海南园区驻地艺术项目，基于记忆金属的生命美学雕塑，借由镍钛合金材料与观众互动。', partner: '华熙生物科技股份有限公司' },
   { img: '/images/sciplay/project-15.png', tag: '品牌周边', title: '天与品牌文创（杜邦纸袋）', desc: '天与品牌文创产品，包括银色杜邦纸材质手提袋和一组九款彩色冰箱贴。', partner: '天与ARTECH' },
+  { img: '/images/sciplay/project-3.png', tag: '科普卡片', title: '能源与文明展览科学水蚕卡（续）', desc: '能源与文明展览科学水蚕卡系列的延续，展示更多能源科学知识的可视化呈现。', partner: '中国科学院物理研究所' },
+  { img: '/images/sciplay/project-4.png', tag: '可视化作品', title: '科学可视化作品展示', desc: '天与视界科学可视化作品集，涵盖物理、化学、生物等多个学科领域的精美可视化作品。', partner: '多个机构' },
+  { img: '/images/sciplay/project-7.png', tag: '3D打印产品', title: '《生命景观》系列——桌面摆件', desc: '《生命景观》系列延伸产品，病毒小夜灯和桌面摆件，精美的3D打印病毒模型。', partner: '北京大学' },
+  { img: '/images/sciplay/project-9.png', tag: '展览活动', title: '《生命景观》亮相怀柔科普周', desc: '《生命景观》系列作品亮相怀柔科普周，现场展示多种病毒3D模型，与公众互动。', partner: '北京大学' },
+  { img: '/images/sciplay/project-12.png', tag: '3D打印摆件', title: '迁移体桌面3D打印摆件（续）', desc: '迁移体3D打印摆件系列，白色迁移体细胞模型，球形主体带有多个小球和触须结构。', partner: '清华大学生命科学院俞立课题组' },
+  { img: '/images/sciplay/project-17.png', tag: '装置艺术', title: '《生命的记忆》装置艺术（续）', desc: 'Biological Memory装置艺术，选用纤维连接蛋白II型结构域蛋白的三维结构模型作为视觉主体。', partner: '华熙生物科技股份有限公司' },
 ]
 
 const PARTNERS = ['中国科学院物理研究所', '北京大学', '清华大学', '核能源研究院', '华熙生物']
