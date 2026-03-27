@@ -36,14 +36,14 @@ export default function SciPlay() {
       <section className="relative overflow-hidden">
         <div className="absolute -top-32 -right-32 w-96 h-96 bg-amber/15 rounded-full blur-3xl" aria-hidden="true" />
         <div className="mx-auto max-w-6xl px-6 pt-24 pb-16 md:pt-36 md:pb-20">
-          <span className="text-xs font-bold tracking-widest uppercase text-amber">SCIPLAY</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink mt-2 mb-4">天与科玩</h1>
-          <p className="text-2xl md:text-3xl font-bold text-ink mb-4">让伟大的科学发现，触手可及！</p>
-          <p className="text-lg text-muted max-w-2xl leading-relaxed">
+          <span className="text-xs font-bold tracking-widest uppercase text-amber scroll-reveal">SCIPLAY</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink mt-2 mb-4 scroll-reveal">天与科玩</h1>
+          <p className="text-2xl md:text-3xl font-bold text-ink mb-4 scroll-reveal">让伟大的科学发现，触手可及！</p>
+          <p className="text-lg text-muted max-w-2xl leading-relaxed scroll-reveal">
             将科研成果转化为可触摸、可收藏、可传播的科学文创产品，让科学之美走进日常生活。
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12 scroll-reveal">
             {STATS.map((s) => (
               <div key={s.label} className="text-center">
                 <p className="text-3xl md:text-4xl font-extrabold text-teal">{s.value}</p>
@@ -57,10 +57,10 @@ export default function SciPlay() {
       {/* Projects grid */}
       <section className="bg-white/50 border-t border-line">
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="text-3xl font-bold text-ink mb-12">产品与项目</h2>
+          <h2 className="text-3xl font-bold text-ink mb-12 scroll-reveal">产品与项目</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PROJECTS.map((p) => (
-              <div key={p.title} className="rounded-2xl border border-line bg-card overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all">
+              <div key={p.title} className="scroll-reveal rounded-2xl border border-line bg-card overflow-hidden card-elevated">
                 <img src={p.img} alt={p.title} className="w-full aspect-[4/3] object-cover" />
                 <div className="p-5">
                   <span className="text-xs font-semibold text-teal bg-teal/8 px-2 py-0.5 rounded-full">{p.tag}</span>
@@ -77,9 +77,9 @@ export default function SciPlay() {
       {/* Partners */}
       <section>
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="text-2xl font-bold text-ink mb-3">合作机构</h2>
-          <p className="text-muted mb-8">与顶尖科研机构和企业携手，共创科学文创精品</p>
-          <div className="flex flex-wrap gap-4">
+          <h2 className="text-2xl font-bold text-ink mb-3 scroll-reveal">合作机构</h2>
+          <p className="text-muted mb-8 scroll-reveal">与顶尖科研机构和企业携手，共创科学文创精品</p>
+          <div className="flex flex-wrap gap-4 scroll-reveal">
             {PARTNERS.map((name) => (
               <span key={name} className="px-5 py-2.5 rounded-xl border border-line bg-card text-sm font-medium text-ink">
                 {name}
@@ -90,7 +90,7 @@ export default function SciPlay() {
       </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-br from-amber/90 to-amber">
+      <section className="bg-gradient-to-br from-amber/90 to-amber scroll-reveal">
         <div className="mx-auto max-w-6xl px-6 py-20 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">准备好转化科研成果了吗？</h2>
           <p className="text-white/80 max-w-lg mx-auto mb-8">

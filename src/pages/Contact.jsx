@@ -18,15 +18,15 @@ export default function Contact() {
   }
 
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2">Contact</p>
-      <h1 className="text-4xl md:text-5xl font-extrabold text-ink mb-6">联系我们</h1>
-      <p className="text-lg text-muted max-w-2xl leading-relaxed mb-16">
+    <div className="mx-auto max-w-6xl px-6 pt-24 pb-20 md:pt-36">
+      <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2 scroll-reveal">Contact</p>
+      <h1 className="text-4xl md:text-5xl font-extrabold text-ink mb-6 scroll-reveal">联系我们</h1>
+      <p className="text-lg text-muted max-w-2xl leading-relaxed mb-16 scroll-reveal">
         有项目想聊？有合作想谈？直接给我们留言。
       </p>
 
       <div className="grid md:grid-cols-2 gap-12">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+        <form onSubmit={handleSubmit} className="scroll-reveal flex flex-col gap-5">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-ink mb-1.5">姓名</label>
             <input
@@ -71,14 +71,14 @@ export default function Contact() {
           )}
         </form>
 
-        <div className="flex flex-col gap-6">
-          <div className="p-6 rounded-2xl border border-line bg-card">
+        <div className="flex flex-col gap-6 scroll-reveal">
+          <div className="p-6 rounded-2xl border border-line bg-card card-elevated">
             <h3 className="text-lg font-bold text-ink mb-2">邮箱</h3>
             <a href="mailto:tianyuartech@gmail.com" className="text-teal no-underline text-sm">
               tianyuartech@gmail.com
             </a>
           </div>
-          <div className="p-6 rounded-2xl border border-line bg-card">
+          <div className="p-6 rounded-2xl border border-line bg-card card-elevated">
             <h3 className="text-lg font-bold text-ink mb-2">所在地</h3>
             <p className="text-sm text-muted">中国 · 北京</p>
           </div>

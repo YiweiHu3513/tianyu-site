@@ -23,16 +23,16 @@ const SERVICES = [
 
 export default function Services() {
   return (
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2">Services</p>
-      <h1 className="text-4xl md:text-5xl font-extrabold text-ink mb-6">我们的服务</h1>
-      <p className="text-lg text-muted max-w-2xl leading-relaxed mb-16">
+    <div className="mx-auto max-w-6xl px-6 pt-24 pb-20 md:pt-36">
+      <p className="text-teal text-xs font-bold tracking-widest uppercase mb-2 scroll-reveal">Services</p>
+      <h1 className="text-4xl md:text-5xl font-extrabold text-ink mb-6 scroll-reveal">我们的服务</h1>
+      <p className="text-lg text-muted max-w-2xl leading-relaxed mb-16 scroll-reveal">
         从可视化到平台开发，我们提供科学传播全链路的创意与技术服务。
       </p>
 
       <div className="grid md:grid-cols-2 gap-8">
         {SERVICES.map((s) => (
-          <div key={s.title} className="p-8 rounded-2xl border border-line bg-card">
+          <div key={s.title} className="scroll-reveal p-8 rounded-2xl border border-line bg-card card-elevated">
             <h2 className="text-xl font-bold text-ink mb-3">{s.title}</h2>
             <p className="text-sm text-muted leading-relaxed mb-5">{s.desc}</p>
             <div className="flex flex-wrap gap-2">

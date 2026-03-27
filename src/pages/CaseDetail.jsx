@@ -1,28 +1,33 @@
 import { useParams, Link } from 'react-router'
+import { useEffect } from 'react'
 import CASE_DETAILS from '../data/caseDetails'
 
 export default function CaseDetail() {
   const { slug } = useParams()
   const c = CASE_DETAILS[slug]
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [slug])
+
   if (!c) {
     return (
-      <div className="mx-auto max-w-6xl px-6 pt-32 pb-20 text-center">
-        <h1 className="text-3xl font-bold text-ink mb-4">案例未找到</h1>
-        <p className="text-muted mb-8">请检查链接是否正确。</p>
-        <Link to="/artech" className="text-teal font-semibold no-underline hover:underline">← 返回全部案例</Link>
+      <div className="mx-auto max-w-6xl px-6 pt-32 pb-20 text-center min-h-screen" style={{ background: '#0a0a0a' }}>
+        <h1 className="text-3xl font-bold text-white mb-4">案例未找到</h1>
+        <p className="mb-8" style={{ color: '#999' }}>请检查链接是否正确。</p>
+        <Link to="/artech" className="font-semibold no-underline hover:underline" style={{ color: '#d4a853' }}>← 返回全部案例</Link>
       </div>
     )
   }
 
   return (
-    <>
+    <div style={{ background: '#0a0a0a', color: '#ddd' }} className="min-h-screen">
       {/* Breadcrumb */}
       <div className="mx-auto max-w-6xl px-6 pt-24 md:pt-28">
-        <nav className="flex items-center gap-2 text-sm text-muted">
-          <Link to="/artech" className="text-muted hover:text-teal no-underline transition-colors">案例</Link>
-          <span className="text-muted/50">›</span>
-          <span className="text-ink font-medium">{c.title}</span>
+        <nav className="flex items-center gap-2 text-sm" style={{ color: '#888' }}>
+          <Link to="/artech" className="no-underline transition-colors" style={{ color: '#888' }}>案例</Link>
+          <span style={{ color: '#555' }}>›</span>
+          <span className="font-medium" style={{ color: '#fff' }}>{c.title}</span>
         </nav>
       </div>
 
@@ -30,18 +35,18 @@ export default function CaseDetail() {
       <section className="mx-auto max-w-6xl px-6 pt-6 pb-10">
         <div className="grid md:grid-cols-2 gap-10 items-start">
           <div>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-ink leading-tight mb-3">{c.title}</h1>
-            <p className="text-lg text-muted italic mb-6">{c.titleEn}</p>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-3">{c.title}</h1>
+            <p className="text-lg italic mb-6" style={{ color: '#9a9a9a' }}>{c.titleEn}</p>
 
             {/* Tags */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <span className="text-xs font-semibold text-teal bg-teal/8 px-3 py-1 rounded-full">{c.cat}</span>
-              <span className="text-sm text-muted">{c.year}</span>
-              {c.duration && <span className="text-sm text-muted">{c.duration}</span>}
+              <span className="text-sm" style={{ color: '#888' }}>{c.year}</span>
+              {c.duration && <span className="text-sm" style={{ color: '#888' }}>{c.duration}</span>}
             </div>
 
             {/* Intro */}
-            <p className="text-muted leading-relaxed mb-6">{c.intro}</p>
+            <p className="leading-relaxed mb-6" style={{ color: '#aaa' }}>{c.intro}</p>
 
             {/* External links */}
             {c.links.length > 0 && (
@@ -64,7 +69,7 @@ export default function CaseDetail() {
           {/* Tags on right for desktop */}
           <div className="flex flex-wrap gap-2 md:justify-end">
             {c.tags.map((t) => (
-              <span key={t} className="px-3 py-1 rounded-full bg-ink/5 text-sm text-muted">{t}</span>
+              <span key={t} className="px-3 py-1 rounded-full text-sm" style={{ background: 'rgba(255,255,255,0.08)', color: '#9b9b9b' }}>{t}</span>
             ))}
           </div>
         </div>
@@ -82,9 +87,9 @@ export default function CaseDetail() {
       </section>
 
       {/* Chapters */}
-      <section className="border-t border-line">
+      <section className="border-t" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
         <div className="mx-auto max-w-6xl px-6 py-20">
-          <h2 className="text-2xl md:text-3xl font-bold text-ink mb-12">章节结构</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-12">章节结构</h2>
 
           <div className="space-y-16">
             {c.chapters.map((ch, i) => (
@@ -98,8 +103,8 @@ export default function CaseDetail() {
                   <span className="text-xs font-bold tracking-widest uppercase text-teal mb-2 block">
                     {ch.num}
                   </span>
-                  <h3 className="text-xl font-bold text-ink mb-3">{ch.title}</h3>
-                  <p className="text-muted leading-relaxed">{ch.desc}</p>
+                  <h3 className="text-xl font-bold text-white mb-3">{ch.title}</h3>
+                  <p className="leading-relaxed" style={{ color: '#999' }}>{ch.desc}</p>
                 </div>
                 <div className={i % 2 === 1 ? 'md:order-1' : ''}>
                   <img
@@ -116,10 +121,10 @@ export default function CaseDetail() {
 
       {/* Video */}
       {c.videoEmbed && (
-        <section className="bg-white/50 border-t border-line">
+        <section className="border-t" style={{ borderColor: 'rgba(255,255,255,0.1)', background: '#0f0f0f' }}>
           <div className="mx-auto max-w-6xl px-6 py-20">
-            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-8 text-center">完整视频</h2>
-            <div className="aspect-video rounded-2xl overflow-hidden bg-ink/5">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 text-center">完整视频</h2>
+            <div className="aspect-video rounded-2xl overflow-hidden" style={{ background: '#121212' }}>
               <iframe
                 src={c.videoEmbed}
                 title={c.title}
@@ -155,6 +160,6 @@ export default function CaseDetail() {
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }

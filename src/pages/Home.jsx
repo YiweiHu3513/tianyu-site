@@ -78,30 +78,29 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-96 h-96 bg-teal-light/20 rounded-full blur-3xl" aria-hidden="true" />
-        <div className="absolute -bottom-32 -left-32 w-80 h-80 bg-amber/20 rounded-full blur-3xl" aria-hidden="true" />
-
-        <div className="relative mx-auto max-w-6xl px-6 pt-24 pb-20 md:pt-36 md:pb-28">
-          <p className="text-teal text-sm font-bold tracking-widest uppercase mb-4 scroll-reveal">
+      <section className="relative overflow-hidden min-h-[85vh] flex items-end" style={{ backgroundImage: 'url(/images/hero-bg-2.png)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/50 to-transparent" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/30 to-transparent" aria-hidden="true" />
+        <div className="relative mx-auto max-w-6xl px-6 pb-16 md:pb-24 w-full scroll-reveal">
+          <p className="text-teal text-sm font-bold tracking-widest uppercase mb-4">
             Tianyu Vision Studio
           </p>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-medium tracking-tight leading-[1.05] text-ink max-w-4xl scroll-reveal">
-            以科技美学<br className="hidden md:block" />重塑科学传播
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1] text-ink max-w-2xl">
+            以科技美学<br />重塑科学传播
           </h1>
-          <p className="mt-6 text-lg text-muted max-w-xl leading-relaxed font-sans scroll-reveal">
+          <p className="mt-6 text-lg text-muted max-w-lg leading-relaxed font-sans">
             天与视界是中国一流的科学可视化团队，致力于将复杂的科学原理转化为精准、美观的视觉语言，让科学传播更高效。
           </p>
-          <div className="mt-8 flex flex-wrap gap-3 scroll-reveal">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link
               to="/contact"
-              className="inline-flex items-center px-6 py-3 rounded-xl bg-gradient-to-r from-teal to-teal-light text-white font-semibold text-sm no-underline shadow-lg shadow-teal/25 hover:-translate-y-0.5 transition-transform"
+              className="inline-flex items-center px-6 py-3 rounded-xl bg-ink text-white font-semibold text-sm no-underline hover:-translate-y-0.5 transition-transform"
             >
               联系我们
             </Link>
             <Link
               to="/services"
-              className="inline-flex items-center px-6 py-3 rounded-xl border border-line bg-white/70 text-ink font-semibold text-sm no-underline hover:-translate-y-0.5 transition-transform"
+              className="inline-flex items-center px-6 py-3 rounded-xl border border-line bg-white/80 backdrop-blur text-ink font-semibold text-sm no-underline hover:-translate-y-0.5 transition-transform"
             >
               了解服务
             </Link>

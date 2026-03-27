@@ -59,3 +59,103 @@
     transform: translateY(-2px);
   }
 }
+
+/* ===== Page Transition (dark space warp) ===== */
+.page-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-transition-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: #0a0a0a;
+  transform: translate(-50%, -50%);
+}
+
+/* Expanding into artech */
+[data-phase="expanding"] .page-transition-circle {
+  animation: circleExpand 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+[data-phase="visible"] .page-transition-circle {
+  width: 300vmax;
+  height: 300vmax;
+  transform: translate(-50%, -50%);
+}
+[data-phase="shrinking"] .page-transition-circle {
+  width: 300vmax;
+  height: 300vmax;
+  transform: translate(-50%, -50%);
+  animation: circleFadeOut 0.5s ease forwards;
+}
+
+/* Reverse (leaving artech) */
+[data-phase="reverse-expanding"] .page-transition-circle {
+  background: #f9fafb;
+  animation: circleExpand 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+[data-phase="reverse-shrinking"] .page-transition-circle {
+  background: #f9fafb;
+  width: 300vmax;
+  height: 300vmax;
+  transform: translate(-50%, -50%);
+  animation: circleFadeOut 0.6s ease forwards;
+}
+
+@keyframes circleExpand {
+  from {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  to {
+    width: 300vmax;
+    height: 300vmax;
+    opacity: 1;
+  }
+}
+
+@keyframes circleFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Star particles */
+.page-transition-stars {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.page-transition-star {
+  position: absolute;
+  left: var(--star-x);
+  top: var(--star-y);
+  width: var(--star-size);
+  height: var(--star-size);
+  border-radius: 50%;
+  background: white;
+  opacity: 0;
+  animation: starStreak var(--star-duration) var(--star-delay) ease-out forwards;
+}
+
+@keyframes starStreak {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(1);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--star-tx), var(--star-ty)) scale(0.2);
+  }
+}
